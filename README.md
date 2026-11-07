@@ -57,14 +57,25 @@ cd .. && ./gradlew test verifyPlugin buildPlugin  # JDK 21+
 3. `view.html` loads `/static/<kind>.js` and `/static/<kind>.css`. Put your bundles in `src/main/resources/web`.
 4. `ShellTheme` turns the IDE colours into `--vscode-*` CSS variables, so VS Code webview code looks right without changes.
 
-## Support and more tools
+[zovo-support-start]: #
 
-- Source and issues: https://github.com/theluckystrike/science-data-viewer-jetbrains
-- Sponsor: https://github.com/sponsors/theluckystrike
-- NetCDF Viewer for VS Code: https://marketplace.visualstudio.com/items?itemName=zovo.hdf5-netcdf-explorer
-- NumPy Viewer for VS Code: https://marketplace.visualstudio.com/items?itemName=zovo.tensor-viewer
-- DOCX & PPTX Viewer for JetBrains: https://github.com/theluckystrike/office-viewer-jetbrains
-- All Zovo tools: https://github.com/theluckystrike
+## Support Zovo
+
+Zovo builds and maintains this plugin. If it saves you time, you can support the work on [GitHub Sponsors](https://github.com/sponsors/theluckystrike). Sponsorship is optional, and the tool works the same without it.
+
+Bug reports and ideas go to [GitHub issues](https://github.com/theluckystrike/science-data-viewer-jetbrains/issues).
+
+Zovo is made by [theluckystrike](https://github.com/theluckystrike) on GitHub.
+
+## More tools by Zovo
+
+- [NetCDF Viewer & HDF5 Viewer (NC, H5)](https://marketplace.visualstudio.com/items?itemName=zovo.hdf5-netcdf-explorer) for VS Code. Browses groups, attributes and values in HDF5 and NetCDF files and plots slices.
+- [NPZ Viewer & NPY Viewer, GGUF & Safetensors (NumPy Viewer)](https://marketplace.visualstudio.com/items?itemName=zovo.tensor-viewer) for VS Code. Shows NPY, NPZ, Safetensors and GGUF tensors with stats and heatmaps.
+- [Pickle Viewer & PKL Viewer (No Python)](https://marketplace.visualstudio.com/items?itemName=zovo.zovo-pickle-viewer) for VS Code. Opens Python pickle files without Python and never runs their code.
+- [DOCX & PPTX Viewer for JetBrains IDEs](https://github.com/theluckystrike/office-viewer-jetbrains). Opens Word and PowerPoint files read-only in an editor tab.
+- [All Zovo tools on GitHub](https://github.com/theluckystrike?tab=repositories). Free tools for VS Code, JetBrains IDEs, Obsidian, Apify and Atlassian.
+
+[zovo-support-end]: #
 
 ## License
 
