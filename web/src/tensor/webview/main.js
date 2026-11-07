@@ -184,9 +184,9 @@ const { displayText, displayComplex, exactText, complexText, PRECISIONS } = requ
   // ---------- layout ----------
   function render() {
     if (S.error) {
-      const kids = [el('h2', { text: S.errorAction === 'rawLayout' ? 'Read this file as a raw array' : 'Tensor Viewer could not open this file' }), el('p', { text: S.error })];
+      const kids = [el('h2', { text: S.errorAction === 'rawLayout' ? 'Read this file as a raw array' : 'This file could not be opened' }), el('p', { text: S.error })];
       if (S.errorAction === 'rawLayout') kids.push(el('div', { class: 'btns' }, [el('button', { class: 'btn primary', id: 'raw-layout', text: 'Choose type and shape...', onclick: () => vscode.postMessage({ type: 'rawLayout' }) })]));
-      else kids.push(el('p', { class: 'note', text: 'Nothing in the file was run or changed. If this is an array written by ndarray.tofile(), right-click it in the Explorer and pick "Open as Raw Array...".' }));
+      else kids.push(el('p', { class: 'note', text: 'Nothing in the file was run or changed.' }));
       app.replaceChildren(el('div', { class: 'fatal' }, kids));
       return;
     }

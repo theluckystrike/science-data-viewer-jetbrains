@@ -227,7 +227,7 @@ function showDataset(info, detail) {
     ['Units', cf.units], ['Standard name', cf.standard_name], ['Calendar', cf.time ? cf.calendar || 'standard' : undefined],
     ['Packing', packingText(cf.packing)], ['Coordinates', coordsText || cf.coordinates],
     ['Chunks', info.chunks ? info.chunks.join(' × ') : undefined], ['Compression', compression(info)],
-    ['Size in memory', fmtBytes(info.bytes)], ['Max shape', info.maxshape && info.maxshape.some((m, i) => m !== info.shape[i]) ? info.maxshape.map(m => (m === null || m < 0 ? '∞' : m)).join(' × ') : undefined],
+    ['Size in memory', fmtBytes(info.bytes)], ['Max shape', info.maxshape && info.maxshape.some((m, i) => m !== info.shape[i]) ? info.maxshape.map(m => (m === null || m < 0 || m >= 2 ** 53 ? '∞' : m)).join(' × ') : undefined],
   ]);
   const controls = el('div', { class: 'controls' });
   const tabs = el('div', { class: 'tabs', role: 'tablist' });

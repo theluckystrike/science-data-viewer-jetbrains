@@ -158,7 +158,7 @@ async function openGguf(source) {
     const off = dataStart + Number(ti.offset);
     const t = { name: ti.name, dtype: name, shape, numel, nbytes, offset: off, readable: !!(g && (g.kind || g.quant)) && !!nbytes && numel > 0,
       _loc: { source, dataOffset: off, kind: g && g.kind, quant: g && g.quant, block: g ? g.block : 1, blockBytes: g ? g.bytes : 0, elemSize: g && g.kind ? g.bytes : 0, littleEndian: le, fortran: false } };
-    if (g && !t.readable && nbytes) t.note = `${name} is listed with its size, but Tensor Viewer does not decode it yet.`;
+    if (g && !t.readable && nbytes) t.note = `${name} is listed with its size, but the viewer does not decode it yet.`;
     if (!g) t.note = `Unknown GGML type ${ti.dtype}.`;
     if (nbytes && off + nbytes > source.size) { t.readable = false; t.note = 'The data range runs past the end of the file. The file may be truncated or a split shard.'; }
     tensors.push(t);
@@ -204,7 +204,7 @@ async function openTensorFile(source, fileName, opts = {}) {
   }
   if (source.size === 0) throw new Error(`${fileName} is empty (0 bytes), so there is nothing to show.`);
   const format = formatFromName(fileName);
-  if (!format) throw new Error(`Tensor Viewer opens .npy, .npz, .safetensors and .gguf files, not ${fileName}.`);
+  if (!format) throw new Error(`This viewer opens .npy and .npz files, not ${fileName}.`);
   const fn = { npy: openNpy, npz: openNpz, safetensors: openSafetensors, gguf: openGguf }[format];
   const model = await fn(source);
   model.fileSize = source.size;

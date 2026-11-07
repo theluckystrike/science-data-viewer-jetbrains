@@ -230,7 +230,7 @@ function fromNumpyDescr(descr) {
   if (!m) return { size: 0, littleEndian: true, label: descr, readable: false, reason: `Unknown dtype ${descr}.` };
   const order = m[1], code = m[2], n = m[3] ? parseInt(m[3], 10) : 0;
   const littleEndian = order !== '>';
-  if (code === 'O') return { size: 8, littleEndian, label: 'object', readable: false, reason: 'Object arrays are stored as Python pickle. Tensor Viewer never loads pickle data, because it can run code.' };
+  if (code === 'O') return { size: 8, littleEndian, label: 'object', readable: false, reason: 'Object arrays are stored as Python pickle. The viewer never loads pickle data, because it can run code.' };
   if (code === 'U') return { size: n * 4, littleEndian, label: `str${n}`, readable: false, reason: 'Text arrays have no numeric stats.' };
   if (code === 'S' || code === 'a') return { size: n, littleEndian, label: `bytes${n}`, readable: false, reason: 'Byte-string arrays have no numeric stats.' };
   if (code === 'V') return { size: n, littleEndian, label: `void${n}`, readable: false, reason: 'Raw void arrays have no numeric stats.' };

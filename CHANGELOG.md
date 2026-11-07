@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1 (2026-11-07)
+
+- A truncated HDF5 or NetCDF-4 file (an interrupted copy or download) now says so, with the size its header expects and the size on disk. Before, the tree showed "error - name not defined!".
+- Max shape shows unlimited dimensions as ∞ instead of 18446744073709552000.
+- .npy and .npz error messages no longer tell you to use "Open as Raw Array..." in the Explorer, which only exists in the VS Code extension. They no longer use the VS Code product name.
+
 ## 0.1.0 (2026-11-07)
 
 First release.

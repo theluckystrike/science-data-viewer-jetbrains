@@ -22,3 +22,21 @@ test('sniff real files', () => {
   assert.equal(sniff(S('argo-profiles-classic.nc')).format, 'netcdf3');
   assert.equal(sniff(S('expected.json')).format, 'unknown');
 });
+
+test('truncated HDF5 files are reported as truncated, whole files are not', async () => {
+  const fs = await import('node:fs');
+  const os = await import('node:os');
+  const path = await import('node:path');
+  const { hdf5EofAddress } = await import('../../src/netcdf/core/detect.mjs');
+  const full = fs.readFileSync(S('era5-t2m-sample.nc'));
+  assert.equal(hdf5EofAddress(full.subarray(0, 64)), full.length);
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'verj-trunc-'));
+  try {
+    const cut = path.join(dir, 'cut.nc');
+    fs.writeFileSync(cut, full.subarray(0, Math.floor(full.length / 2)));
+    const s = sniff(cut);
+    assert.equal(s.format, 'unsupported');
+    assert.match(s.reason, /truncated/);
+    assert.equal(sniff(S('era5-t2m-sample.nc')).format, 'hdf5');
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});

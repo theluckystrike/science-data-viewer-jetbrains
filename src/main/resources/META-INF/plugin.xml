@@ -33,6 +33,7 @@
 </ul>
 ]]></description>
   <change-notes><![CDATA[
+<p>0.1.1: a cut-off HDF5 or NetCDF-4 file now says it is truncated, with the expected and actual size. Unlimited dimensions show as ∞ in Max shape. Error messages for .npy and .npz files no longer point to a command that only exists in VS Code.</p>
 <p>0.1.0: first release. NetCDF-3, NetCDF-4 and HDF5 viewer with CF decoding, heatmaps, line plots, stats and CSV export. NumPy .npy and .npz viewer with stats, value table, heatmap and image view.</p>
 ]]></change-notes>
   <depends>com.intellij.modules.platform</depends>

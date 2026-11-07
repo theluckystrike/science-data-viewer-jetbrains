@@ -8,10 +8,10 @@ export function sniff(filePath) {
   const fd = fs.openSync(filePath, 'r');
   try {
     const size = fs.fstatSync(fd).size;
-    const head = Buffer.alloc(Math.min(20, size)); // 8 bytes for the signatures, 20 for the MATLAB v5 text header
+    const head = Buffer.alloc(Math.min(64, size)); // 8 bytes for the signatures, 20 for the MATLAB v5 text header, 64 for the HDF5 superblock
     fs.readSync(fd, head, 0, head.length, 0);
     const sigAt = off => { if (off + 8 > size) return null; const b = Buffer.alloc(8); fs.readSync(fd, b, 0, 8, off); return b; };
-    return { size, ...detectFormat(head, sigAt) };
+    return { size, ...detectFormat(head, sigAt, size) };
   } finally { fs.closeSync(fd); }
 }
 
