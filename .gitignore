@@ -1,0 +1,8 @@
+.gradle/
+build/
+.intellijPlatform/
+.kotlin/
+*.iml
+.idea/
+web/node_modules/
+web/test/.tmp-fixtures/

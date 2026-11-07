@@ -1,0 +1,47 @@
+<idea-plugin>
+  <id>zovo.science-data-viewer</id>
+  <name>NetCDF, HDF5 &amp; NumPy Viewer</name>
+  <vendor url="https://github.com/theluckystrike/science-data-viewer-jetbrains">Zovo</vendor>
+  <description><![CDATA[
+<p>Open NetCDF (.nc, .nc4, .cdf), HDF5 (.h5, .hdf5, .he5) and NumPy (.npy, .npz) files in a read-only viewer inside PyCharm, IntelliJ IDEA, DataSpell, CLion and the other JetBrains IDEs.</p>
+<p>Double-click a file in the Project view. You see its structure, its metadata and its values without writing a Python script or running ncdump.</p>
+<h3>NetCDF and HDF5</h3>
+<ul>
+  <li>A tree of groups, variables and dimensions, with shape, type, chunks and compression for each variable.</li>
+  <li>Attributes and CF metadata: units, long names, scale_factor and add_offset, fill values, and time axes decoded to dates (calendars included).</li>
+  <li>A heatmap of any 2D slice. Pick the row and column dimensions, and move a slider for each other dimension. Eight colour maps, percentile or fixed range, log scale.</li>
+  <li>A line plot for 1D variables, and a time series for the point you click in the heatmap.</li>
+  <li>Stats for the slice on screen (min, max, mean, std, fill count), a paged value table, and CSV export of the current slice.</li>
+  <li>Big files open fast: only the header and the chunks a slice needs are read.</li>
+</ul>
+<h3>NumPy .npy and .npz</h3>
+<ul>
+  <li>The array list of an .npz, with shape, dtype and size for each array.</li>
+  <li>Stats from all values (min, max, mean, std, NaN and Inf counts), and a value table with paging.</li>
+  <li>A heatmap for 2D arrays and an image view for H x W x 3 or 4 arrays.</li>
+  <li>Save an array or a slice as .npy or CSV.</li>
+</ul>
+<p>Everything is read-only and offline. The viewer makes no network calls and never changes your file.</p>
+<p>Free and open source (MIT). Source code and issues: <a href="https://github.com/theluckystrike/science-data-viewer-jetbrains">github.com/theluckystrike/science-data-viewer-jetbrains</a>.</p>
+<h3>Support and more tools</h3>
+<ul>
+  <li><a href="https://github.com/sponsors/theluckystrike">Sponsor on GitHub</a> if this viewer saves you time.</li>
+  <li><a href="https://marketplace.visualstudio.com/items?itemName=zovo.hdf5-netcdf-explorer">NetCDF Viewer &amp; HDF5 Viewer</a> for VS Code.</li>
+  <li><a href="https://marketplace.visualstudio.com/items?itemName=zovo.tensor-viewer">NPZ Viewer &amp; NPY Viewer</a> for VS Code, which also opens GGUF and Safetensors.</li>
+  <li><a href="https://github.com/theluckystrike/office-viewer-jetbrains">DOCX &amp; PPTX Viewer</a> for JetBrains IDEs.</li>
+  <li>All Zovo tools: <a href="https://github.com/theluckystrike">theluckystrike on GitHub</a>.</li>
+</ul>
+]]></description>
+  <change-notes><![CDATA[
+<p>0.1.0: first release. NetCDF-3, NetCDF-4 and HDF5 viewer with CF decoding, heatmaps, line plots, stats and CSV export. NumPy .npy and .npz viewer with stats, value table, heatmap and image view.</p>
+]]></change-notes>
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <fileType name="Scientific Data" implementationClass="zovo.science.ScienceFileType" fieldName="SCIENTIFIC"
+              extensions="nc;nc4;cdf;netcdf;h5;hdf5;he5;hdf"/>
+    <fileType name="NumPy Array" implementationClass="zovo.science.ScienceFileType" fieldName="NUMPY"
+              extensions="npy;npz"/>
+    <fileEditorProvider implementation="zovo.science.ScienceEditorProvider"/>
+  </extensions>
+</idea-plugin>

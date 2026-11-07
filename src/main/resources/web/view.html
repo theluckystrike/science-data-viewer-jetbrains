@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'nonce-{{NONCE}}' 'wasm-unsafe-eval'; worker-src 'self'; connect-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/t/{{TOKEN}}/theme.css">
+<link rel="stylesheet" href="/static/{{KIND}}.css">
+<link rel="stylesheet" href="/static/shell.css">
+<title>{{TITLE}}</title>
+</head>
+<body class="{{BODYCLASS}}">
+<div id="app" data-title="{{TITLE}}"><p class="muted loading">Opening {{TITLE}}...</p></div>
+{{FOOTER}}
+<script nonce="{{NONCE}}">window.ZOVO = {{CONFIG}};</script>
+<script src="/static/{{KIND}}.js"></script>
+</body>
+</html>
